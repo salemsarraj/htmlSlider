@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- By ENG. Salem Al-Sarraj -->
+<!-- 01-05-2024 - HTMLSwiper -->
+<!-- @ https://al-sarraj.com -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarraj Swiper</title>
+    <style>
+        
+        /* Styles for the swiper container */
+        .sarrajSwiper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Styles for the swiper wrapper */
+        .sarrajSwiper-wrapper {
+            display: flex;
+            transition: transform 0.3s ease; /* Smooth slide transition */    
+            width: 100%;
+    margin: 20px 0px;
+        }
+
+        /* Styles for each swiper slide (adjust as needed) */
+        .sarrajSwiper-slide {
+            flex: 0 0 100px; /* Set the width of each slide */
+            height: fit-content; /* Set the height of each slide */
+            padding: 10px; /* Add spacing between slides */
+        }
+
+        /* Styles for navigation buttons */
+        .sarrajSwiper-button-next,
+        .sarrajSwiper-button-prev {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 100%;
+            text-align: center;
+            cursor: pointer;
+            font-size: 4px;
+        }
+
+        .sarrajSwiper-button-next {
+            right: 0;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #E2E2E2 54%);
+        }
+
+        .sarrajSwiper-button-prev {
+            left: 0;
+            background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, #E2E2E2 54%);
+        }
+
+        .image-item {
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+            border-radius: 15px;
+            /* width: 85px; */
+            border: 2px solid transparent;
+        }
+
+            .image-item > img {
+                width: -webkit-fill-available;
+            }
+    </style>
+</head>
+<body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <div class="sarrajSwiper">
+                                                    <div id="sarrajSwiperContainer" class="sarrajSwiper-wrapper">
+                                                        <!-- Add your swiper slides here -->
+                                                        <div class="sarrajSwiper-slide">
+                                                            <button id="firstInsideTemplate" class="image-item" onclick="addSvgInsidetoSvg(1)" templateID="1">
+                                                                <img src="https://barcodejacket.com/BarcodeAssetes/images/inside_style_1.jpg" alt="Inside Style 1">
+                                                            </button>
+                                                        </div>
+                                                        <div class="sarrajSwiper-slide">
+                                                            <button class="image-item" onclick="addSvgInsidetoSvg(2)" templateID="2">
+                                                                <img src="https://barcodejacket.com/BarcodeAssetes/images/inside_style_2.jpg" alt="Inside Style 2">
+                                                            </button>
+                                                        </div>
+                                                        <div class="sarrajSwiper-slide">
+                                                            <button class="image-item" onclick="addSvgInsidetoSvg(3)" templateID="3">
+                                                                <img src="https://barcodejacket.com/BarcodeAssetes/images/inside_style_3.jpg" alt="Inside Style 3">
+                                                            </button>
+                                                        </div>
+                                                        <div class="sarrajSwiper-slide">
+                                                            <button class="image-item" onclick="addSvgInsidetoSvg(4)" templateID="4">
+                                                                <img src="https://barcodejacket.com/BarcodeAssetes/images/inside_style_4.jpg" alt="Inside Style 4">
+                                                            </button>
+                                                        </div>
+                                                        <div class="sarrajSwiper-slide">
+                                                            <button class="image-item" onclick="addSvgInsidetoSvg(5)" templateID="5">
+                                                                <img src="https://barcodejacket.com/BarcodeAssetes/images/inside_style_5.jpg" alt="Inside Style 5">
+                                                            </button>
+                                                        </div>
+                                                        <div class="sarrajSwiper-slide">
+                                                            <button class="image-item" onclick="addSvgInsidetoSvg(6)" templateID="6">
+                                                                <img src="https://barcodejacket.com/BarcodeAssetes/images/inside_style_6.jpg" alt="Inside Style 6">
+                                                            </button>
+                                                        </div>
+                                                        <div class="sarrajSwiper-slide">
+                                                            <button class="image-item" onclick="addSvgInsidetoSvg(7)" templateID="7">
+                                                                <img src="https://barcodejacket.com/BarcodeAssetes/images/inside_style_7.jpg" alt="Inside Style 7">
+                                                            </button>
+                                                        </div>
+                                                        <div class="sarrajSwiper-slide">
+                                                            <button class="image-item" onclick="addSvgInsidetoSvg(8)" templateID="8">
+                                                                <img src="https://barcodejacket.com/BarcodeAssetes/images/inside_style_8.jpg" alt="Inside Style 8">
+                                                            </button>
+                                                        </div>
+                                                        <!-- Add more items as needed -->
+                                                    </div>
+                                                    <div class="sarrajSwiper-button-next">
+                                                    <!-- Arrow -->
+                                                    </div>
+                                                    <div class="sarrajSwiper-button-prev">
+                                                    <!-- Arrow -->
+                                                    </div>
+                                                </div>
+
+
+                                                <script>
+                                                    $(document).ready(function () {
+                                                        var slidesToShow = 3;
+                                                                alSarrajSwiper(slidesToShow);
+                                                                
+                                                    });
+
+                                                    function alSarrajSwiper(slidesToShow) {
+
+                                                        const container = $('#sarrajSwiperContainer');
+                                                        const containerWidth = $('#sarrajSwiperContainer').outerWidth();
+                                                        const slides = $('.sarrajSwiper-slide');
+                                                        const slideWidth = containerWidth / slidesToShow;
+                                                        const slideLength = $('.sarrajSwiper-slide').length;
+                                                        const imageBtns = $('.image-item');
+                                                        let currentIndex = 0;
+                                                        // remove 20px for padding in .sarrajSwiper-slide
+
+                                                        slides.css('flex-basis', slideWidth - 20);
+                                                        // remove 20px for padding in .sarrajSwiper-slide
+                                                        imageBtns.css('width', (slideWidth - 20));
+                                                        console.log('CW : ' + containerWidth + '-STS : ' + slidesToShow + '-SW : ' + slideWidth + '-SL : ' + slideLength);
+                                                        // Next button click handler
+                                                        $('.sarrajSwiper-button-next').on('click', function () {
+                                                            if (currentIndex < (slideLength - slidesToShow)) {
+                                                                currentIndex++;
+                                                                container.css('transform', `translateX(-${currentIndex * slideWidth}px)`);
+                                                            }
+                                                        });
+
+                                                        // Prev button click handler
+                                                        $('.sarrajSwiper-button-prev').on('click', function () {
+                                                            if (currentIndex > 0) {
+                                                                currentIndex--;
+                                                                container.css('transform', `translateX(-${currentIndex * slideWidth}px)`);
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
+</body>
+</html>
